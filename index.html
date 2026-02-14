@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Furina Store • Layanan Digital Premium</title>
+  
+  <!-- Tailwind CSS (lightweight) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <!-- Google Fonts: Inter modern, Cinzel untuk aksen -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b1120;
+      color: #e2e8f0;
+    }
+    /* Custom warna Furina yang lebih soft */
+    :root {
+      --primary: #0f172a;
+      --secondary: #1e293b;
+      --blue-soft: #3b82f6;
+      --gold-soft: #d4a853;
+      --text-muted: #94a3b8;
+    }
+    /* Scrollbar kustom */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-soft);
+      border-radius: 4px;
+    }
+    /* Card video */
+    .video-card {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 168, 83, 0.2);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+    .video-card video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Button style */
+    .btn-primary {
+      background: var(--blue-soft);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold-soft);
+      color: var(--gold-soft);
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-outline:hover {
+      background: rgba(212,168,83,0.1);
+      transform: translateY(-2px);
+    }
+    /* Product card */
+    .product-card {
+      background: var(--secondary);
+      border: 1px solid rgba(212,168,83,0.1);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .product-card:hover {
+      border-color: var(--gold-soft);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.6);
+    }
+    .price-tag {
+      background: rgba(59,130,246,0.2);
+      color: var(--blue-soft);
+      font-weight: 600;
+      padding: 0.25rem 1rem;
+      border-radius: 9999px;
+      display: inline-block;
+      border: 1px solid rgba(59,130,246,0.3);
+    }
+    /* Stat card */
+    .stat-card {
+      background: var(--secondary);
+      border: 1px solid rgba(212,168,83,0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      border-top: 1px solid rgba(212,168,83,0.1);
+    }
+    /* Utility */
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .text-gold {
+      color: var(--gold-soft);
+    }
+    .text-blue {
+      color: var(--blue-soft);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- Navbar sederhana -->
+<nav class="py-4 px-6 md:px-12 flex justify-between items-center border-b border-white/5">
+  <div class="flex items-center gap-2">
+    <span class="text-2xl font-cinzel font-semibold text-gold">Furina</span>
+    <span class="text-white/60 text-sm hidden sm:inline">Store</span>
+  </div>
+  <div class="flex gap-4 items-center">
+    <a href="#products" class="text-sm text-white/70 hover:text-gold transition">Produk</a>
+    <a href="#contact" class="text-sm text-white/70 hover:text-gold transition">Kontak</a>
+    <a href="https://wa.me/6282228928028" class="btn-primary text-sm py-2 px-4">
+      <i class="fab fa-whatsapp"></i> Chat
+    </a>
+  </div>
+</nav>
+
+<!-- VIDEO BOX CARD DI PALING ATAS -->
+<section class="px-4 md:px-8 max-w-7xl mx-auto mt-8 mb-16">
+  <div class="video-card" data-aos="fade-up" data-aos-duration="800">
+    <div class="grid md:grid-cols-2 gap-0">
+      <!-- Sisi video -->
+      <div class="relative">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+          <source src="video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <!-- overlay subtle -->
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
+      </div>
+      <!-- Sisi konten -->
+      <div class="p-8 md:p-12 flex flex-col justify-center">
+        <div class="flex items-center gap-2 text-sm text-gold mb-2">
+          <i class="fas fa-crown"></i>
+          <span class="uppercase tracking-wider">Hydro Archon's Choice</span>
+        </div>
+        <h1 class="font-cinzel text-3xl md:text-4xl font-semibold mb-4">
+          <span class="text-blue">Furina</span> <span class="text-gold">Store</span>
+        </h1>
+        <p class="text-white/70 mb-6 leading-relaxed">
+          Layanan digital premium dengan sentuhan elegan ala Hydro Archon. 
+          Website custom, bot WhatsApp, dan script berkualitas tinggi untuk kebutuhan Anda.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#products" class="btn-primary">
+            <i class="fas fa-arrow-right"></i> Lihat Produk
+          </a>
+          <a href="https://wa.me/6282228928028" class="btn-outline">
+            <i class="fab fa-whatsapp"></i> Konsultasi Gratis
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistik singkat -->
+<section class="px-4 max-w-7xl mx-auto mb-20">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+      <i class="fas fa-users text-blue text-2xl mb-2"></i>
+      <div class="text-2xl font-semibold text-gold">500+</div>
+      <div class="text-sm text-white/50">Clients</div>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+      <i class="fas fa-globe text-blue text-2xl mb-2"></i>
+      <div class="text-2xl font-semibold text-gold">200+</div>
+      <div class="text-sm text-white/50">Projects</div>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+      <i class="fab fa-whatsapp text-blue text-2xl mb-2"></i>
+      <div class="text-2xl font-semibold text-gold">1k+</div>
+      <div class="text-sm text-white/50">Bot Active</div>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+      <i class="fas fa-clock text-blue text-2xl mb-2"></i>
+      <div class="text-2xl font-semibold text-gold">24/7</div>
+      <div class="text-sm text-white/50">Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- Produk Section -->
+<section id="products" class="px-4 max-w-7xl mx-auto mb-20">
+  <h2 class="font-cinzel text-2xl md:text-3xl font-semibold text-center mb-12" data-aos="fade-up">
+    <span class="text-blue">Premium</span> <span class="text-gold">Products</span>
+  </h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- Produk 1: Jasa Website -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-14 h-14 bg-blue/10 rounded-2xl flex items-center justify-center mb-4">
+        <i class="fas fa-globe text-blue text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Jasa Website Custom</h3>
+      <p class="text-white/60 text-sm mb-4">Website profesional, desain responsif, revisi 2x</p>
+      <div class="mb-4">
+        <span class="price-tag">Rp 100.000</span>
+        <span class="text-xs text-white/40 ml-2">/sekali</span>
+      </div>
+      <ul class="text-sm text-white/60 mb-6 space-y-1">
+        <li><i class="fas fa-check text-gold mr-2"></i>Desain responsif</li>
+        <li><i class="fas fa-check text-gold mr-2"></i>Free revisi 2x</li>
+        <li><i class="fas fa-check text-gold mr-2"></i>Source code lengkap</li>
+      </ul>
+      <a href="https://wa.me/6282228928028?text=Halo%20saya%20mau%20pesan%20jasa%20website" class="btn-primary w-full justify-center text-sm py-2">
+        <i class="fab fa-whatsapp"></i> Pesan via WA
+      </a>
+    </div>
+    <!-- Produk 2: Sewa Bot WA -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="w-14 h-14 bg-blue/10 rounded-2xl flex items-center justify-center mb-4">
+        <i class="fab fa-whatsapp text-blue text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Sewa Bot WA VVIP</h3>
+      <p class="text-white/60 text-sm mb-4">Multi device, fitur premium, anti ban</p>
+      <div class="mb-4 space-y-1 text-sm">
+        <div class="flex justify-between"><span>1 Jam</span><span class="text-gold">Rp2k</span></div>
+        <div class="flex justify-between"><span>24 Jam</span><span class="text-gold">Rp3k</span></div>
+        <div class="flex justify-between"><span>7 Hari</span><span class="text-gold">Rp5k</span></div>
+        <div class="flex justify-between font-semibold"><span>Permanent</span><span class="text-gold">Rp20k</span></div>
+      </div>
+      <a href="https://lynk.id/hanzzbotz/4g3p4dez39zw" class="btn-primary w-full justify-center text-sm py-2">
+        <i class="fas fa-shopping-cart"></i> Sewa Sekarang
+      </a>
+    </div>
+    <!-- Produk 3: Script Bot -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="w-14 h-14 bg-blue/10 rounded-2xl flex items-center justify-center mb-4">
+        <i class="fas fa-code text-blue text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Script Bot WA MD</h3>
+      <p class="text-white/60 text-sm mb-4">Full source, mudah custom, fitur lengkap</p>
+      <div class="mb-4">
+        <span class="price-tag">Rp 50.000</span>
+        <span class="text-xs text-white/40 ml-2">/source</span>
+      </div>
+      <ul class="text-sm text-white/60 mb-6 space-y-1">
+        <li><i class="fas fa-check text-gold mr-2"></i>Multi device</li>
+        <li><i class="fas fa-check text-gold mr-2"></i>Downloader YT/IG/TT</li>
+        <li><i class="fas fa-check text-gold mr-2"></i>Sticker + OpenAI</li>
+      </ul>
+      <a href="https://lynk.id/hanzzbotz/6n38y11eokyx" class="btn-primary w-full justify-center text-sm py-2">
+        <i class="fas fa-download"></i> Beli Script
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Fitur unggulan -->
+<section class="px-4 max-w-7xl mx-auto mb-20">
+  <h2 class="font-cinzel text-2xl md:text-3xl font-semibold text-center mb-12" data-aos="fade-up">
+    <span class="text-blue">Mengapa</span> <span class="text-gold">Furina Store?</span>
+  </h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="text-center p-6 bg-secondary/30 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-16 h-16 mx-auto bg-blue/10 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-bolt text-blue text-2xl"></i>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Respon Cepat</h3>
+      <p class="text-white/60 text-sm">Online 24/7, siap membantu kapan pun Anda butuh.</p>
+    </div>
+    <div class="text-center p-6 bg-secondary/30 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+      <div class="w-16 h-16 mx-auto bg-blue/10 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-shield-alt text-blue text-2xl"></i>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Terpercaya</h3>
+      <p class="text-white/60 text-sm">500+ client dengan rating kepuasan tinggi.</p>
+    </div>
+    <div class="text-center p-6 bg-secondary/30 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+      <div class="w-16 h-16 mx-auto bg-blue/10 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-gem text-blue text-2xl"></i>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Kualitas Premium</h3>
+      <p class="text-white/60 text-sm">Produk berkualitas dengan garansi update.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial singkat -->
+<section class="px-4 max-w-7xl mx-auto mb-20">
+  <h2 class="font-cinzel text-2xl md:text-3xl font-semibold text-center mb-12" data-aos="fade-up">
+    <span class="text-blue">Apa Kata</span> <span class="text-gold">Mereka</span>
+  </h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-secondary/40 p-6 rounded-2xl border border-white/5" data-aos="fade-right">
+      <div class="flex text-gold mb-3">★★★★★</div>
+      <p class="text-white/80 mb-4">"Mantap bang, websitenya sesuai request. Proses cepet, harganya juga terjangkau. Recomended!"</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue to-gold rounded-full flex items-center justify-center text-white font-semibold">R</div>
+        <div>
+          <p class="font-medium">Rizki</p>
+          <p class="text-xs text-white/40">Owner Toko Online</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-secondary/40 p-6 rounded-2xl border border-white/5" data-aos="fade-left">
+      <div class="flex text-gold mb-3">★★★★★</div>
+      <p class="text-white/80 mb-4">"Bot WA nya mantep, fitur lengkap, anti banned. Udah sewa permanent, worth it banget!"</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue to-gold rounded-full flex items-center justify-center text-white font-semibold">A</div>
+        <div>
+          <p class="font-medium">Andi</p>
+          <p class="text-xs text-white/40">Admin Grup WA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / Kontak -->
+<section id="contact" class="px-4 max-w-4xl mx-auto text-center mb-20">
+  <h2 class="font-cinzel text-2xl md:text-3xl font-semibold mb-4" data-aos="fade-up">
+    Siap <span class="text-blue">Bekerja Sama</span>?
+  </h2>
+  <p class="text-white/60 mb-8">Klik tombol di bawah untuk konsultasi gratis atau pemesanan.</p>
+  <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="100">
+    <a href="https://wa.me/6282228928028" class="btn-primary">
+      <i class="fab fa-whatsapp text-lg"></i> Chat WhatsApp
+    </a>
+    <a href="#products" class="btn-outline">
+      <i class="fas fa-shopping-bag"></i> Lihat Produk
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer py-12 px-4">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+    <div>
+      <h3 class="font-cinzel text-xl font-semibold mb-4">
+        <span class="text-blue">Furina</span> <span class="text-gold">Store</span>
+      </h3>
+      <p class="text-sm text-white/40">Layanan digital premium dengan sentuhan elegan ala Hydro Archon.</p>
+    </div>
+    <div>
+      <h4 class="font-medium mb-3 text-white/80">Produk</h4>
+      <ul class="space-y-2 text-sm text-white/40">
+        <li>Jasa Website</li>
+        <li>Sewa Bot WA</li>
+        <li>Script Bot MD</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-medium mb-3 text-white/80">Kontak</h4>
+      <ul class="space-y-2 text-sm text-white/40">
+        <li><i class="fab fa-whatsapp text-gold mr-2"></i>+62 822-2892-8028</li>
+        <li><i class="far fa-clock text-gold mr-2"></i>08:00 - 23:00 WIB</li>
+        <li><i class="fas fa-map-marker-alt text-gold mr-2"></i>Surabaya</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-medium mb-3 text-white/80">Ikuti Kami</h4>
+      <div class="flex gap-3">
+        <a href="#" class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center hover:bg-gold/20 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center hover:bg-gold/20 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center hover:bg-gold/20 transition"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-white/20 text-xs mt-12 pt-6 border-t border-white/5">
+    © 2026 Furina Store • All rights reserved • In the name of the Hydro Archon
+  </div>
+</footer>
+
+<!-- Floating WA (opsional) -->
+<a href="https://wa.me/6282228928028" class="fixed bottom-6 right-6 w-14 h-14 bg-blue rounded-full flex items-center justify-center text-white shadow-lg hover:bg-blue-700 transition z-50">
+  <i class="fab fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Initialize AOS -->
+<script>
+  AOS.init({ duration: 800, once: true });
+</script>
+
+</body>
+</html>
